@@ -1,0 +1,2 @@
+u aosc-portal-paste - "AOSC Portal pastebin server daemon owner" /var/cache/@PROGPREFIX@paste-server /usr/bin/false
+g aosc-portal-paste - -
