@@ -65,7 +65,6 @@ install-systemd:
 		sed \
 			-e "s|@PROGPREFIX@|$(PROGPREFIX)|g" \
 			-i $(TMPFILESDIR)/$(PROGPREFIX)$$i; \
-		rename .tmpfiles .conf $(TMPFILESDIR)/*; \
 	done && \
 	for i in $(SYSUSERSDCONFIGS); do \
 		$(INSTALL_FILE) $$i \
@@ -73,7 +72,6 @@ install-systemd:
 		sed \
 			-e "s|@PROGPREFIX@|$(PROGPREFIX)|g" \
 			-i $(SYSUSERSDIR)/$(PROGPREFIX)$$i; \
-		rename .sysusers .conf $(SYSUSERSDIR)/*; \
 	done
 
 clean:
