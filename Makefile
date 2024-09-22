@@ -89,7 +89,7 @@ ifeq ($(DESTDIR),)
 	chown -Rv aosc-portal-paste:www-data $(LIBEXECDIR)/$(PROGPREFIX)paste-server
 	@echo "===="
 	@echo ""
-	@echo "To start the paste server:
+	@echo "To start the paste server:"
 	@echo ""
 	@echo "    systemctl enable $(PROGPREFIX)paste-server.service --now"
 	@echo ""
