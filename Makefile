@@ -105,5 +105,4 @@ endif
 
 clean:
 	rm -rfv \
-		$(OUTDIR) \
-		$(SRCDATADIR)/*.service
+		$(OUTDIR)
