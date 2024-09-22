@@ -98,8 +98,8 @@ else
 	@echo "===="
 	@echo ""
 	@echo "After installing the utilites to the final root directory, refer to the"
-	@echo "\"Manual configuration\" section in README.md for instructions on"
-	@echo "configuring the utilities and daemons."
+	@echo "\"Manual configuration\" section in README.md for instructions on configuring"
+	@echo "the utilities and daemons."
 	@echo ""
 	@echo "===="
 endif
