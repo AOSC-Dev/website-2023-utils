@@ -37,7 +37,7 @@ make-news-index:
 	cd $(SRCROOT)/make-news-index && \
 		go build -o $(OUTDIR)/$(PROGPREFIX)make-news-index
 
-install: install-paste-server install-make-news-index install-systemd
+install: install-paste-server install-make-news-index install-systemd install-post
 
 install-paste-server:
 	$(INSTALL_PROG) $(OUTDIR)/$(PROGPREFIX)paste-server \
@@ -75,6 +75,33 @@ install-systemd:
 			-e "s|@PROGPREFIX@|$(PROGPREFIX)|g" \
 			-i $(SYSUSERSDIR)/$(PROGPREFIX)$$i; \
 	done
+
+# FIXME: Make this more elegant.
+install-post: install-systemd
+	mv -v $(TMPFILESDIR)/$(PROGPREFIX)paste-server.tmpfiles \
+		$(TMPFILESDIR)/$(PROGPREFIX)paste-server.conf
+	mv -v $(SYSUSERSDIR)/$(PROGPREFIX)paste-server.sysusers \
+		$(SYSUSERSDIR)/$(PROGPREFIX)paste-server.conf
+ifeq ($(DESTDIR),)
+	systemd-sysusers $(PROGPREFIX)paste-server.conf
+	systemd-tmpfiles --create $(PROGPREFIX)paste-server.conf
+	chmod -v 740 $(LIBEXECDIR)/$(PROGPREFIX)paste-server
+	chown -Rv aosc-portal-paste:www-data $(LIBEXECDIR)/$(PROGPREFIX)paste-server
+	@echo "===="
+	@echo ""
+	@echo "To start the paste server:
+	@echo ""
+	@echo "    systemctl enable $(PROGPREFIX)paste-server.service --now"
+	@echo ""
+	@echo "===="
+else
+	@echo "===="
+	@echo ""
+	@echo "After installing the utilites to the final root directory, refer to README.md"
+	@echo "for instructions on how to configure the utilities and daemons."
+	@echo ""
+	@echo "===="
+endif
 
 clean:
 	rm -rfv \
