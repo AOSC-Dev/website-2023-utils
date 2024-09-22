@@ -6,6 +6,7 @@ DESTDIR=
 PREFIX=/usr/local
 SYSCONFDIR=/etc
 BINDIR=$(DESTDIR)$(PREFIX)/bin
+LIBEXECDIR=$(DESTDIR)$(PREFIX)/libexec
 SYSTEMDUNITDIR=$(DESTDIR)$(SYSCONFDIR)/systemd/system
 TMPFILESDIR=$(DESTDIR)$(SYSCONFDIR)/tmpfiles.d
 SYSUSERSDIR=$(DESTDIR)$(SYSCONFDIR)/sysusers.d
@@ -55,7 +56,7 @@ install-systemd:
 		$(INSTALL_FILE) $$i \
 			$(SYSTEMDUNITDIR)/$(PROGPREFIX)$$i; \
 		sed \
-			-e "s|@BINDIR@|$(BINDIR)|g" \
+			-e "s|@LIBEXECDIR@|$(LIBEXECDIR)|g" \
 			-e "s|@PROGPREFIX@|$(PROGPREFIX)|g" \
 			-i $(SYSTEMDUNITDIR)/$(PROGPREFIX)$$i; \
 	done && \
@@ -70,6 +71,7 @@ install-systemd:
 		$(INSTALL_FILE) $$i \
                         $(SYSUSERSDIR)/$(PROGPREFIX)$$i; \
 		sed \
+			-e "s|@LIBEXECDIR@|$(LIBEXECDIR)|g" \
 			-e "s|@PROGPREFIX@|$(PROGPREFIX)|g" \
 			-i $(SYSUSERSDIR)/$(PROGPREFIX)$$i; \
 	done
