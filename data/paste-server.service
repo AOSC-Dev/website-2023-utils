@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=aosc-portal-paste
 Group=aosc-portal-paste
-WorkingDirectory=/var/cache@PROGPREFIX@paste-server
+WorkingDirectory=/var/cache/@PROGPREFIX@paste-server
 ExecStart=@LIBEXECDIR@/@PROGPREFIX@paste-server/@PROGPREFIX@paste-server
 
 [Install]
