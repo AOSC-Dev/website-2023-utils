@@ -9,6 +9,7 @@ import (
 	"github.com/gogf/gf/v2/os/gfile"
 
 	v1 "pasteServer/api/paste/v1"
+	"pasteServer/internal/consts"
 )
 
 func (c *ControllerV1) Paste(ctx context.Context, req *v1.PasteReq) (res *v1.PasteRes, err error) {
@@ -17,7 +18,7 @@ func (c *ControllerV1) Paste(ctx context.Context, req *v1.PasteReq) (res *v1.Pas
 		return
 	}
 
-	pastePath := "paste/content/" + req.Id
+	pastePath := consts.PasteContentPath + req.Id
 	if !gfile.Exists(pastePath) {
 		err = gerror.NewCode(gcode.CodeInvalidParameter, "粘贴板不存在")
 		return
