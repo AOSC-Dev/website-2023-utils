@@ -97,8 +97,9 @@ ifeq ($(DESTDIR),)
 else
 	@echo "===="
 	@echo ""
-	@echo "After installing the utilites to the final root directory, refer to README.md"
-	@echo "for instructions on how to configure the utilities and daemons."
+	@echo "After installing the utilites to the final root directory, refer to the"
+	@echo "\"Manual configuration\" section in README.md for instructions on"
+	@echo "configuring the utilities and daemons."
 	@echo ""
 	@echo "===="
 endif

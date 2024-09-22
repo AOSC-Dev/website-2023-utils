@@ -20,17 +20,10 @@ oma install go
 make
 ```
 
-以 root 用户安装上述文件：
+以 root 用户安装上述文件（安装过程中会自动配置各实用工具及守护程序）：
 
 ```
 make install
-```
-
-以 root 用户配置服务：
-
-```
-systemd-sysusers aosc-portal-paste-server.conf
-systemd-tmpfiles --create aosc-portal-paste-server.conf
 ```
 
 最后，以 root 用户启动服务：
@@ -38,3 +31,19 @@ systemd-tmpfiles --create aosc-portal-paste-server.conf
 ```
 systemctl enable --now aosc-portal-paste-server
 ```
+
+### 手动部署配置
+
+如果您在安装时使用了 `DESTDIR=` 参数将文件临时安装到某处，最终部署时，您还需要使用 root 用户运行如下命令：
+
+```
+systemd-sysusers ${PROGPREFIX}paste-server.conf
+systemd-tmpfiles --create ${PROGPREFIX}paste-server.conf
+chmod -v 740 ${LIBEXECDIR}/${PROGPREFIX}paste-server
+chown -Rv aosc-portal-paste:www-data ${LIBEXECDIR}/${PROGPREFIX}paste-server
+```
+
+注意，如上的 `${LIBEXEC}` 及 `${PROGPREFIX}` 为编译 (`make`) 时指定，默认值如下：
+
+- `${LIBEXECDIR}`: `/usr/local/libexec`
+- `${PROGPREFIX}`: `aosc-portal-`
