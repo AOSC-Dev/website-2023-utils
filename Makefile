@@ -30,7 +30,10 @@ all: paste-server make-news-index
 paste-server:
 	mkdir -pv $(OUTDIR)
 	cd $(SRCROOT)/paste-server && \
-		go build -o $(OUTDIR)/$(PROGPREFIX)paste-server
+	sed \
+		-e "s|@PROGPREFIX@|$(PROGPREFIX)|g" \
+		-i internal/consts/consts.go && \
+	go build -o $(OUTDIR)/$(PROGPREFIX)paste-server
 
 make-news-index:
 	mkdir -pv $(OUTDIR)

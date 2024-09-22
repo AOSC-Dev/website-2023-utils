@@ -1,5 +1,5 @@
 package consts
 
-const PasteContentPath = "/var/cache/aosc-portal-paste-server/content/"
+const PasteContentPath = "/var/cache/@PROGPREFIX@paste-server/content/"
 
-const PasteRemovePath = "/var/cache/aosc-portal-paste-server/remove/"
+const PasteRemovePath = "/var/cache/@PROGPREFIX@paste-server/remove/"
