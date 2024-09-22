@@ -1,1 +1,1 @@
-d /var/cache@PROGPREFIX@paste-server 700 aosc-portal-paste aosc-portal-paste
+d /var/cache@PROGPREFIX@paste-server 760 aosc-portal-paste www-data

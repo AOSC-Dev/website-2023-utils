@@ -85,7 +85,7 @@ install-post: install-systemd
 ifeq ($(DESTDIR),)
 	systemd-sysusers $(PROGPREFIX)paste-server.conf
 	systemd-tmpfiles --create $(PROGPREFIX)paste-server.conf
-	chmod -v 740 $(LIBEXECDIR)/$(PROGPREFIX)paste-server
+	chmod -v 760 $(LIBEXECDIR)/$(PROGPREFIX)paste-server
 	chown -Rv aosc-portal-paste:www-data $(LIBEXECDIR)/$(PROGPREFIX)paste-server
 	@echo "===="
 	@echo ""
