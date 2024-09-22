@@ -40,7 +40,9 @@ install: install-paste-server install-make-news-index install-systemd
 
 install-paste-server:
 	$(INSTALL_PROG) $(OUTDIR)/$(PROGPREFIX)paste-server \
-		$(BINDIR)/$(PROGPREFIX)paste-server
+		$(LIBEXECDIR)/$(PROGPREFIX)paste-server/$(PROGPREFIX)paste-server
+	$(INSTALL_FILE) $(SRCDATADIR)/paste-server-config.yaml \
+		$(LIBEXECDIR)/$(PROGPREFIX)paste-server/config.yaml
 
 install-make-news-index:
 	$(INSTALL_PROG) $(OUTDIR)/$(PROGPREFIX)make-news-index \
